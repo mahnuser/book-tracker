@@ -1,4 +1,4 @@
-_Simple Book Tracker that works local_ 
+_Simple Book Tracker that works on local._ 
 
 
 Builded with PyQt5. 
