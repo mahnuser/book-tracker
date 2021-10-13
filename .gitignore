@@ -1,0 +1,4 @@
+src/ignore/
+src/__pycache__/
+src/book.db
+src/last_save.dat
