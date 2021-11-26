@@ -50,6 +50,8 @@ class AddBook(QtWidgets.QMainWindow):
         
         self.book = uic.loadUi( "bookAdd.ui", self )
         self.book.addBook.clicked.connect( self.addButton )
+        self.book.setWindowTitle("Add Book")
+
 
     def addButton( self ):
         
@@ -121,6 +123,7 @@ class BookTrackerApp(QtWidgets.QMainWindow):
         ### LOAD TABLE FROM DB
         self.refresh()
 
+        self.setWindowTitle("Book Tracker")
 
         ### Clock variables
         self.save = "00:00:00:00"

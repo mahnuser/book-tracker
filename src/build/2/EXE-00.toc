@@ -51,7 +51,7 @@
  [],
  False,
  False,
- 1637965622,
+ 1637966796,
  [('runw.exe',
    'C:\\Users\\Mamut\\.virtualenvs\\AssignmentTracker-5sIsjk4Y\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\runw.exe',
    'EXECUTABLE')])
