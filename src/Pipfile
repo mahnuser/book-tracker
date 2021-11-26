@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pandas = "==1.3.4"
+pyinstaller = "==4.6"
+pyqt5 = "==5.15.6"
+altgraph = "==0.17.2"
+future = "==0.18.2"
+numpy = "==1.21.4"
+pefile = "==2021.9.3"
+pyinstaller-hooks-contrib = "==2021.3"
+pyqt5-qt5 = "==5.15.2"
+pyqt5-sip = "==12.9.0"
+python-dateutil = "==2.8.2"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

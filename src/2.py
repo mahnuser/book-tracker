@@ -1,3 +1,5 @@
+#!python
+
 from PyQt5 import QtSql
 from PyQt5 import QtCore
 import time
@@ -108,12 +110,12 @@ class BookTrackerApp(QtWidgets.QMainWindow):
         QtCore.QTimer.singleShot( 1500, lambda: self.ui.welcomeText.setText( "<strong>LET'S </strong>READ" ))
 
         self.check = self.control()
-        print("self.check --> " + str(self.check))
-        print(self.check)
+        # print("self.check --> " + str(self.check))
+        # print(self.check)
 
         ### CHECK DB IS EXISTS
         if self.check == "FileNotFoundError":      
-            print("file not found and created.")
+            # print("file not found and created.")
             self.firstUse()
         
         ### LOAD TABLE FROM DB
@@ -173,7 +175,7 @@ class BookTrackerApp(QtWidgets.QMainWindow):
         db = self.dbConnection()
         
         query = QtSql.QSqlQuery("Create table books(id integer PRIMARY KEY AUTOINCREMENT, book_name text , author_name text,read_time integer,started_date text,finished_date text,status integer)")
-        print("created table")
+
         # insert_query = QtSql.QSqlQuery()
         query.exec_("INSERT INTO books (book_name,author_name,read_time,started_date,finished_date,status) VALUES ('example','author',400,'2010-10-10','2011-10-10','1')")
         
@@ -188,12 +190,13 @@ class BookTrackerApp(QtWidgets.QMainWindow):
         db.setDatabaseName("book.db")
         if db.open():
             print("Connection Established /// ")
+            
         return db
 
 
     def refresh(self): 
         db = self.dbConnection()
-        print ( db.isOpen() )
+        # print ( db.isOpen() )
         # query = QSqlQuery("Select * from books")
         model = QtSql.QSqlTableModel()
         model.setTable("books")
@@ -205,7 +208,7 @@ class BookTrackerApp(QtWidgets.QMainWindow):
         self.ui.newTable.hideColumn(0)  # hide id section
         self.get_currently_reading()
         db.close()
-        print (db.isOpen())
+        # print (db.isOpen())
 
 
     def addNewBook(self):
@@ -216,12 +219,12 @@ class BookTrackerApp(QtWidgets.QMainWindow):
     def delete_book(self):
 
         db = self.dbConnection()
-        print("ready to delete")
+        # print("ready to delete")
         selections = self.newTable.selectionModel().selectedRows()
         for s in selections:
             row_index = s.row() 
             id = s.data()
-            print(row_index, id)
+            # print(row_index, id)
             # print(s.row())
 
             query = QSqlQuery(f"Select * from books where id={id}")
@@ -231,9 +234,9 @@ class BookTrackerApp(QtWidgets.QMainWindow):
             while query.next():
                 n = query.value(name)
                 a = query.value(author)
-                print(query.value(index))
-                print(n)
-                print(a)
+                # print(query.value(index))
+                # print(n)
+                # print(a)
             
                 pop_up = QMessageBox()
 
@@ -257,7 +260,7 @@ class BookTrackerApp(QtWidgets.QMainWindow):
         
         self.currentBook.clear()
         db = self.dbConnection()
-        print("getting currently readings...")
+        # print("getting currently readings...")
         items = []
         query = QSqlQuery("Select * from books where status=1")
         index = query.record().indexOf('id')
@@ -313,7 +316,7 @@ class BookTrackerApp(QtWidgets.QMainWindow):
     # set current clock to self.save session
     def set_clock_to_save(self,time):
         t = time.strip().split(":")
-        print(t)
+        # print(t)
         # _h = f"{self._hour:02}"
         # _m = f"{self._minute:02}"
         # _s = f"{self._second:02}"
@@ -391,13 +394,13 @@ class BookTrackerApp(QtWidgets.QMainWindow):
         
         name = query.record().indexOf('book_name')
         time = query.record().indexOf("read_time")
-        print(time)
+        # print(time)
         while query.next():
             if query.value(name) == book_name:
                 read_time = query.value(time)
-                print (str(read_time) + " current_read_time")
+                # print (str(read_time) + " current_read_time")
                 read_time += prepare_time
-                print (str(read_time) + " updated_read_time")
+                # print (str(read_time) + " updated_read_time")
                 # data = [book_name, read_time]
                 q = QSqlQuery()
                 q.prepare("UPDATE books SET read_time = (?) WHERE book_name = (?)")
@@ -471,6 +474,7 @@ class SplashScreen(QtWidgets.QMainWindow):
 
 
 if __name__ == "__main__":
+    
     app = QtWidgets.QApplication(sys.argv)
     win = SplashScreen()
     win.show()
